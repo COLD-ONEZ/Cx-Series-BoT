@@ -15,8 +15,8 @@
       "index",
       "inline"
     ],
-    "website": "https://github.com/COLD-ONEZ/Cx-Rqst-Filter",
-    "repository": "https://github.com/COLD-ONEZ/Cx-Rqst-Filter",
+    "website": "https://github.com/COLD-ONEZ/Cx-Series-BoT",
+    "repository": "https://github.com/COLD-ONEZ/Cx-Series-BoT",
     "env": {
         "BOT_TOKEN": {
             "description": "Your bot token.",
