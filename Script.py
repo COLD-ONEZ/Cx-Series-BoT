@@ -1,15 +1,15 @@
 class script(object):
     START_TXT = """<b>Hᴇʟʟᴏ {},
 Mʏ Nᴀᴍᴇ Is <a href=https://t.me/{}>{}</a>,
-ɪ ᴄᴀɴ ᴩʀᴏᴠɪᴅᴇ ᴍᴏᴠɪᴇꜱ.
+ɪ ᴄᴀɴ ᴩʀᴏᴠɪᴅᴇ ꜱᴇʀɪᴇꜱ.
 
-ʏᴏᴜ ᴄᴀɴ ᴜsᴇ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ɪ ᴡɪʟʟ ɢɪᴠᴇ ᴍᴏᴠɪᴇs ᴏʀ sᴇʀɪᴇs ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ !! </b>"""
+ʏᴏᴜ ᴄᴀɴ ᴜsᴇ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ɪ ᴡɪʟʟ ɢɪᴠᴇ sᴇʀɪᴇs ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ !! </b>"""
 
     HELP_TXT = """<b>Hᴇʏ {}
-Iꜰ Yᴏᴜ Wᴀɴᴛ Mᴏᴠɪᴇꜱ Tʜᴇɴ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴩ.
+Iꜰ Yᴏᴜ Wᴀɴᴛ Sᴇʀɪᴇꜱ Tʜᴇɴ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴩ.
 Yᴏᴜ Cᴀɴ Cʜᴇᴄᴋ /settings Fᴏʀ Cʜᴀɴɢᴇ Sᴇᴛᴛɪɴɢꜱ.
 
-Fᴏʀ Sᴇʀɪᴇꜱ Aᴅᴅ @Cx_Series_BoT Iɴ Yᴏᴜʀ Gʀᴏᴜᴩ</b>"""
+Fᴏʀ Mᴏᴠɪᴇꜱ Aᴅᴅ @Cx_FilteR_BoT Iɴ Yᴏᴜʀ Gʀᴏᴜᴩ</b>"""
 
     ABOUT_TXT = """<b>• Mʏ Nᴀᴍᴇ: {}
 • Cʀᴇᴀᴛᴇᴅ Bʏ: <a href='https://t.me/TEAM_COLD_BOT'>Tᴇᴀᴍ Cᴏʟᴅ</a>
