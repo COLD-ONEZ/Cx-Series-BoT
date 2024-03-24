@@ -173,9 +173,8 @@ async def start(client, message):
             except Exception as e:
                 logger.warning(e, exc_info=True)
                 continue
-            await asyncio.sleep(1) 
+            await asyncio.sleep(120) 
         await sts.delete()
-        await asyncio.sleep(120)
         await fsm.delete()
         
         return
@@ -221,8 +220,9 @@ async def start(client, message):
                 except Exception as e:
                     logger.exception(e)
                     continue
-            await asyncio.sleep(1) 
+            await asyncio.sleep(120) 
         return await sts.delete()
+        return await fsm.delete()
 
     elif data.split("-", 1)[0] == "verify":
         userid = data.split("-", 2)[1]
