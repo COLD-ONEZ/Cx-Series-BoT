@@ -137,7 +137,7 @@ async def start(client, message):
             if f_caption is None:
                 f_caption = f"{title}"
             try:
-                await client.send_cached_media(
+                fsm = await client.send_cached_media(
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
                     caption=f_caption,
@@ -155,7 +155,7 @@ async def start(client, message):
             except FloodWait as e:
                 await asyncio.sleep(e.x)
                 logger.warning(f"Floodwait of {e.x} sec.")
-                await client.send_cached_media(
+                fsm await client.send_cached_media(
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
                     caption=f_caption,
@@ -175,6 +175,9 @@ async def start(client, message):
                 continue
             await asyncio.sleep(1) 
         await sts.delete()
+        await asyncio.sleep(120)
+        await k.delete()
+        
         return
     elif data.split("-", 1)[0] == "DSTORE":
         sts = await message.reply("<b>Pʟᴇᴀsᴇ ᴡᴀɪᴛ...</b>")
@@ -326,7 +329,7 @@ async def start(client, message):
             reply_markup=InlineKeyboardMarkup(btn)
         )
         return
-    await client.send_cached_media(
+    k = await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
         caption=f_caption,
@@ -341,6 +344,8 @@ async def start(client, message):
             ]
         )
     )
+    await asyncio.sleep(120)
+    await k.delete()
                     
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
