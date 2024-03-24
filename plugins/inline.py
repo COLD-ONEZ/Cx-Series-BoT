@@ -82,7 +82,7 @@ async def answer(bot, query):
         if string:
             switch_pm_text += f" for {string}"
         try:
-            await query.answer(results=results,
+            im = await query.answer(results=results,
                            is_personal = True,
                            cache_time=cache_time,
                            switch_pm_text=switch_pm_text,
@@ -97,13 +97,14 @@ async def answer(bot, query):
         if string:
             switch_pm_text += f' for "{string}"'
 
-        await query.answer(results=[],
+        im = await query.answer(results=[],
                            is_personal = True,
                            cache_time=cache_time,
                            switch_pm_text=switch_pm_text,
                            switch_pm_parameter="okay")
 
-
+    await asyncio.sleep(120)
+    await im.delete()
 def get_reply_markup(query):
     buttons = [
         [
