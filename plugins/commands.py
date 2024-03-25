@@ -149,38 +149,31 @@ async def start(client, message):
                     protect_content=msg.get('protect', False),
                 )
 
-                asyncio.create_task(delete_after_delay(k, AUTO_DELETE_TIME))
-                asyncio.create_task(delete_after_delay(h, AUTO_DELETE_TIME))
+                asyncio.create_task(delete_after_delay(v, AUTO_DELETE_TIME))
+                asyncio.create_task(delete_after_delay(m, AUTO_DELETE_TIME))
             except FloodWait as e:
                 await asyncio.sleep(e.x)
                 logger.warning(f"Floodwait of {e.x} sec.")
-                fsm = await client.send_cached_media(
+                await client.send_cached_media(
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
                     caption=f_caption,
                     protect_content=msg.get('protect', False),
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                         [
-                          InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=f'https://t.me/TEAM_COLD')
-                       ],[
-                          InlineKeyboardButton("Bᴏᴛ Oᴡɴᴇʀ", url="https://t.me/TEAM_COLD_BOT")
-                         ]
-                        ]
                     )
-                )
             except Exception as e:
                 logger.warning(e, exc_info=True)
                 continue
-            await asyncio.sleep(120) 
+            await asyncio.sleep(1) 
         await sts.delete()
-        await fsm.delete()
         
         return
     elif data.split("-", 1)[0] == "DSTORE":
-        sts = await message.reply("<b>Pʟᴇᴀsᴇ ᴡᴀɪᴛ...</b>")
+        stelif data.split("-", 1)[0] == "DSTORE":
+        sts = await message.reply("**🔺 ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ**")
         b_string = data.split("-", 1)[1]
         decoded = (base64.urlsafe_b64decode(b_string + "=" * (-len(b_string) % 4))).decode("ascii")
+        await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Movie File/Video will be deleted in <b><u>{AUTO_DELETE} mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward this File/Video to your Saved Messages and Start Download there</b>")
+               
         try:
             f_msg_id, l_msg_id, f_chat_id, protect = decoded.split("_", 3)
         except:
@@ -197,11 +190,15 @@ async def start(client, message):
                         logger.exception(e)
                         f_caption = getattr(msg, 'caption', '')
                 else:
-                    media = getattr(msg, msg.media.value)
+                    media = getattr(msg, msg.media)
                     file_name = getattr(media, 'file_name', '')
                     f_caption = getattr(msg, 'caption', file_name)
                 try:
-                    await msg.copy(message.chat.id, caption=f_caption, protect_content=True if protect == "/pbatch" else False)
+                    v = await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Movie File/Video will be deleted in <b><u>{AUTO_DELETE} minutes</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward this File/Video to your Saved Messages and Start Download there</b>")
+                    m = await msg.copy(message.chat.id, caption=f_caption, protect_content=True if protect == "/pbatch" else False)
+                    
+                    asyncio.create_task(delete_after_delay(v, AUTO_DELETE_TIME))
+                    asyncio.create_task(delete_after_delay(m, AUTO_DELETE_TIME))
                 except FloodWait as e:
                     await asyncio.sleep(e.x)
                     await msg.copy(message.chat.id, caption=f_caption, protect_content=True if protect == "/pbatch" else False)
@@ -219,9 +216,8 @@ async def start(client, message):
                 except Exception as e:
                     logger.exception(e)
                     continue
-            await asyncio.sleep(120) 
+            await asyncio.sleep(1) 
         return await sts.delete()
-        return await fsm.delete()
 
     elif data.split("-", 1)[0] == "verify":
         userid = data.split("-", 2)[1]
