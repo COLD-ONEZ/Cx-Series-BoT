@@ -141,7 +141,7 @@ async def start(client, message):
             if f_caption is None:
                 f_caption = f"{title}"
             try:
-                v = await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Files Will Be Deleted in <b>{AUTO_DELETE} Minutes</b> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please Forward This File/Video To Your Saved Messages And Start Download There\n\ഈ ഫയൽസ് എല്ലാം <b>{AUTO_DELETE} മിനിറ്റിനുള്ളിൽ</b> ഇവിടെ നിന്ന് ഡിലീറ്റ് ആകുന്നതാണ്.നിങ്ങൾക്കാവശ്യമുള്ള ഫയൽ സേവ്ഡ് മെസ്സേജിലേക്കോ അല്ലെങ്കിൽ മറ്റൊരു ചാറ്റിലേക്കോ ഫോർവേഡ് ചെയ്ത ശേഷം മാത്രം ഡൗൺലോഡ് ചെയ്യുക.</b>")
+                v = await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Files Will Be Deleted in <b>10 Minutes</b> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please Forward This Files To Your Saved Messages And Start Download There\n\nഈ ഫയൽസ് എല്ലാം <b>10 മിനിറ്റിനുള്ളിൽ</b> ഇവിടെ നിന്ന് ഡിലീറ്റ് ആകുന്നതാണ്.നിങ്ങൾക്കാവശ്യമുള്ള ഫയൽ സേവ്ഡ് മെസ്സേജിലേക്കോ അല്ലെങ്കിൽ മറ്റൊരു ചാറ്റിലേക്കോ ഫോർവേഡ് ചെയ്ത ശേഷം മാത്രം ഡൗൺലോഡ് ചെയ്യുക.</b>")
                 m = await client.send_cached_media(
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
@@ -171,7 +171,7 @@ async def start(client, message):
         sts = await message.reply("**Please.. Wait😌**")
         b_string = data.split("-", 1)[1]
         decoded = (base64.urlsafe_b64decode(b_string + "=" * (-len(b_string) % 4))).decode("ascii")
-        await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Files Will Be Deleted in <b>{AUTO_DELETE} Minutes</b> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please Forward This File/Video To Your Saved Messages And Start Download There\n\ഈ ഫയൽസ് എല്ലാം <b>{AUTO_DELETE} മിനിറ്റിനുള്ളിൽ</b> ഇവിടെ നിന്ന് ഡിലീറ്റ് ആകുന്നതാണ്.നിങ്ങൾക്കാവശ്യമുള്ള ഫയൽ സേവ്ഡ് മെസ്സേജിലേക്കോ അല്ലെങ്കിൽ മറ്റൊരു ചാറ്റിലേക്കോ ഫോർവേഡ് ചെയ്ത ശേഷം മാത്രം ഡൗൺലോഡ് ചെയ്യുക.</b>")
+        v = await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Files Will Be Deleted in <b>10 Minutes</b> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please Forward This Files To Your Saved Messages And Start Download There\n\nഈ ഫയൽസ് എല്ലാം <b>10 മിനിറ്റിനുള്ളിൽ</b> ഇവിടെ നിന്ന് ഡിലീറ്റ് ആകുന്നതാണ്.നിങ്ങൾക്കാവശ്യമുള്ള ഫയൽ സേവ്ഡ് മെസ്സേജിലേക്കോ അല്ലെങ്കിൽ മറ്റൊരു ചാറ്റിലേക്കോ ഫോർവേഡ് ചെയ്ത ശേഷം മാത്രം ഡൗൺലോഡ് ചെയ്യുക.</b>")
                
         try:
             f_msg_id, l_msg_id, f_chat_id, protect = decoded.split("_", 3)
@@ -195,6 +195,7 @@ async def start(client, message):
                 try:
                     m = await msg.copy(message.chat.id, caption=f_caption, protect_content=True if protect == "/pbatch" else False)
                     
+                    asyncio.create_task(delete_after_delay(v, AUTO_DELETE_TIME))
                     asyncio.create_task(delete_after_delay(m, AUTO_DELETE_TIME))
                 except FloodWait as e:
                     await asyncio.sleep(e.x)
