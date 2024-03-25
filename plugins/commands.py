@@ -168,7 +168,6 @@ async def start(client, message):
         
         return
     elif data.split("-", 1)[0] == "DSTORE":
-        stelif data.split("-", 1)[0] == "DSTORE":
         sts = await message.reply("**🔺 ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ**")
         b_string = data.split("-", 1)[1]
         decoded = (base64.urlsafe_b64decode(b_string + "=" * (-len(b_string) % 4))).decode("ascii")
