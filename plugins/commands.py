@@ -77,17 +77,20 @@ async def start(client, message):
         )
         return
 
-        if AUTH_CHANNEL and not await is_subscribed(client, message):
-        try:
-            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
-        except ChatAdminRequired:
-            logger.error("Make sure Bot is admin in Forcesub channel")
+        if INVITE_LINK is None:
+            invite_link = (await bot.create_chat_invite_link(
+                chat_id=(int(AUTH_CHANNEL) if not REQ_CHANNEL and not JOIN_REQS_DB else REQ_CHANNEL),
+                creates_join_request=True if REQ_CHANNEL and JOIN_REQS_DB else False
+            )).invite_link
+            INVITE_LINK = invite_link
+            logger.info("Created Req link")
+        else:
+            invite_link = INVITE_LINK
+            
             return
         btn = [
             [
-                InlineKeyboardButton("❆ Jᴏɪɴ Oᴜʀ Cʜᴀɴɴᴇʟ ❆", url=invite_link.invite_link)
-            ],[
-                InlineKeyboardButton('🤔 Why Iam Join🤔', callback_data='sinfo')
+                InlineKeyboardButton("📢 JOIN CHANNEL 📢", url=invite_link.invite_link)
             ]
         ]
 
