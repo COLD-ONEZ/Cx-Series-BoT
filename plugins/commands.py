@@ -103,7 +103,7 @@ async def start(client, message):
         await client.send_photo(
             chat_id=message.from_user.id,
             photo="https://telegra.ph/file/20b4aaaddb8aba646e53c.jpg",
-            caption="**You are not in our channel given below so you don't get the movie file...\n\nIf you want the movie file, click on the '🍿ᴊᴏɪɴ ᴏᴜʀ ʙᴀᴄᴋ-ᴜᴘ ᴄʜᴀɴɴᴇʟ🍿' button below and join our back-up channel, then click on the '🔄 Try Again' button below...\n\nThen you will get the movie files...**",
+            caption="**Click The  𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟 Button And Click Request to join channel Then Click 𝗧𝗥𝗬 𝗔𝗚𝗔𝗜𝗡 and you will get the Files..🦋\n\nതാഴെയുള്ള 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟 ക്ലിക്ക് ചെയ്ത് Request to join channel ക്ലിക്ക് ചെയ്യുക അതിനു ശേഷം 𝗧𝗥𝗬 𝗔𝗚𝗔𝗜𝗡 ക്ലിക്ക് ചെയ്‌താൽ നിങ്ങൾ ആവശ്യപ്പെട്ട സീരീസ് ലഭിക്കുന്നതാണ്..🥰**",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN
             )
