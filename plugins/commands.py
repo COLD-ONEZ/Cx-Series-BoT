@@ -76,39 +76,11 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
-
-        if INVITE_LINK is None:
-            invite_link = (await bot.create_chat_invite_link(
-                chat_id=(int(AUTH_CHANNEL) if not REQ_CHANNEL and not JOIN_REQS_DB else REQ_CHANNEL),
-                creates_join_request=True if REQ_CHANNEL and JOIN_REQS_DB else False
-            )).invite_link
-            INVITE_LINK = invite_link
-            logger.info("Created Req link")
-        else:
-            invite_link = INVITE_LINK
-            
-            return
-        btn = [
-            [
-                InlineKeyboardButton("📢 JOIN CHANNEL 📢", url=invite_link.invite_link)
-            ]
-        ]
-
-        if message.command[1] != "subscribe":
-            try:
-                kk, file_id = message.command[1].split("_", 1)
-                btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"checksub#{kk}#{file_id}")])
-            except (IndexError, ValueError):
-                btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
-        await client.send_photo(
-            chat_id=message.from_user.id,
-            photo="https://telegra.ph/file/20b4aaaddb8aba646e53c.jpg",
-            caption="**Click The  𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟 Button And Click Request to join channel Then Click 𝗧𝗥𝗬 𝗔𝗚𝗔𝗜𝗡 and you will get the Files..🦋\n\nതാഴെയുള്ള 𝗝𝗢𝗜𝗡 𝗖𝗛𝗔𝗡𝗡𝗘𝗟 ക്ലിക്ക് ചെയ്ത് Request to join channel ക്ലിക്ക് ചെയ്യുക അതിനു ശേഷം 𝗧𝗥𝗬 𝗔𝗚𝗔𝗜𝗡 ക്ലിക്ക് ചെയ്‌താൽ നിങ്ങൾ ആവശ്യപ്പെട്ട സീരീസ് ലഭിക്കുന്നതാണ്..🥰**",
-            reply_markup=InlineKeyboardMarkup(btn),
-            parse_mode=enums.ParseMode.MARKDOWN
-            )
-        return
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
+        if message.command[1] == "subscribe":
+            await ForceSub(client, message)
+            return
+
         buttons = [[
                     InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
                 ],[
@@ -130,12 +102,18 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
+
+    kk, file_id = message.command[1].split("_", 1) if "_" in message.command[1] else (False, False)
+    pre = ('checksubp' if kk == 'filep' else 'checksub') if kk else False
+
+    status = await ForceSub(client, message, file_id=file_id, mode=pre)
+    if not status:
+        return
+
     data = message.command[1]
-    try:
-        pre, file_id = data.split('_', 1)
-    except:
+    if not file_id:
         file_id = data
-        pre = ""
+
     if data.split("-", 1)[0] == "BATCH":
         sts = await message.reply("<b>Pʟᴇᴀsᴇ ᴡᴀɪᴛ...</b>")
         file_id = data.split("-", 1)[1]
