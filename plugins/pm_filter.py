@@ -61,7 +61,7 @@ async def give_filter(client, message):
         if total_results == 0:
             return
         else:
-            return await message.reply_text(f"<b>Hᴇʏ {message.from_user.mention}, {str(total_results)} ʀᴇsᴜʟᴛs ᴀʀᴇ ғᴏᴜɴᴅ ɪɴ ᴍʏ ᴅᴀᴛᴀʙᴀsᴇ ғᴏʀ ʏᴏᴜʀ ᴏ‌ᴜᴇʀʏ {search}. Kɪɴᴅʟʏ ᴜsᴇ ɪɴʟɪɴᴇ sᴇᴀʀᴄʜ ᴏʀ ᴍᴀᴋᴇ ᴀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴀᴅᴅ ᴍᴇ ᴀs ᴀᴅᴍɪɴ ᴛᴏ ɢᴇᴛ ꜱᴇʀɪᴇꜱ ғɪʟᴇs. Tʜɪs ɪs ᴀ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ sᴏ ᴛʜᴀᴛ ʏᴏᴜ ᴄᴀɴ'ᴛ ɢᴇᴛ ғɪʟᴇs ғʀᴏᴍ ʜᴇʀᴇ...\n\nFᴏʀ Sᴇʀɪᴇꜱ, Jᴏɪɴ👇</b>",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("JOIN CHANNEL", url=f"https://t.me/COLD_X_SERIES")]]))
+            return await message.reply_text(f"<b>Hey {message.from_user.mention},\nThis Series Already Available In Our Group Click Below Button And Join Our Group Then Send This Series Name You Will Get This Series.\n\n താങ്കൾ ആവശ്യപ്പെട്ട സീരീസ് ഞങ്ങളുടെ സീരീസ് ഗ്രൂപ്പിൽ ലഭ്യമാണ് താഴെക്കാണുന്ന ലിങ്ക് ക്ലിക്ക് ചെയ്ത് ഗ്രൂപ്പിൽ ജോയിൻ ചെയ്ത ശേഷം ഈ സീരിസിന്റെ പേര് അതിൽ അയക്കുക.നിങ്ങൾക് സീരീസ് ലഭിക്കുന്നതാണ്.</b>",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("SERIES GROUP", url=f"https://t.me/COLD_X_SERIES")]]))
 
 @Client.on_message(filters.private & filters.text & filters.incoming)
 async def pm_text(bot, message):
@@ -1047,8 +1047,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         btn = [[
                 InlineKeyboardButton("✅ Uᴘʟᴏᴀᴅᴇᴅ ✅", callback_data=f"upalert#{from_user}")
               ]]
-        btn2 = [[
-                 InlineKeyboardButton("Vɪᴇᴡ Sᴛᴀᴛᴜs", url=f"{query.message.link}")
+        btn3 = [[
+                 InlineKeyboardButton("Sᴇʀɪᴇꜱ Gʀᴏᴜᴩ", url="https://t.me/COLD_X_SERIES")
                ]]
         if query.from_user.id in ADMINS:
             user = await client.get_users(from_user)
@@ -1058,9 +1058,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !")
             try:
-                await client.send_message(chat_id=int(from_user), text=f"<b>Hᴇʏ {user.mention}, Yᴏᴜʀ ʀᴇᴏ̨ᴜᴇsᴛ ʜᴀs ʙᴇᴇɴ ᴜᴘʟᴏᴀᴅᴇᴅ ʙʏ ᴏᴜʀ ᴍᴏᴅᴇʀᴀᴛᴏʀs. Kɪɴᴅʟʏ sᴇᴀʀᴄʜ ᴀɢᴀɪɴ.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Your Requested Series Has been Uploaded.Click Below Button And And Send You're Requested Series Name in Our Group You Will Get You're Series.\n\nതാങ്കൾ അഭ്യർത്ഥിച്ച സീരീസ് ആഡ് ചെയ്തിട്ടുണ്ട്.\nതാഴെക്കാണുന്ന ബട്ടൺ ക്ലിക്ക് ചെയ്ത് ഗ്രൂപ്പിൽ നിങ്ങൾ ആവശ്യപ്പെട്ട സീരിസിന്റെ പേര് അയക്കുക നിങ്ങൾക് സീരീസ് ലഭിക്കുന്നതാണ്.</b>", reply_markup=InlineKeyboardMarkup(btn3))
             except UserIsBlocked:
-                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hᴇʏ {user.mention}, Yᴏᴜʀ ʀᴇᴏ̨ᴜᴇsᴛ ʜᴀs ʙᴇᴇɴ ᴜᴘʟᴏᴀᴅᴇᴅ ʙʏ ᴏᴜʀ ᴍᴏᴅᴇʀᴀᴛᴏʀs. Kɪɴᴅʟʏ sᴇᴀʀᴄʜ ᴀɢᴀɪɴ.\n\nNᴏᴛᴇ: Tʜɪs ᴍᴇssᴀɢᴇ ɪs sᴇɴᴛ ᴛᴏ ᴛʜɪs ɢʀᴏᴜᴘ ʙᴇᴄᴀᴜsᴇ ʏᴏᴜ'ᴠᴇ ʙʟᴏᴄᴋᴇᴅ ᴛʜᴇ ʙᴏᴛ. Tᴏ sᴇɴᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴛᴏ ʏᴏᴜʀ PM, Mᴜsᴛ ᴜɴʙʟᴏᴄᴋ ᴛʜᴇ ʙᴏᴛ.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Your Requested Series Has been Uploaded.Click Below Button And And Send You're Requested Series Name in Our Group You Will Get You're Series.\nClick This Link Next Time You Will Get This Messege In Bot Dm.\nhttps://t.me/Cx_Series_BoT?start\nതാങ്കൾ അഭ്യർത്ഥിച്ച സീരീസ് ആഡ് ചെയ്തിട്ടുണ്ട് താഴെക്കാണുന്ന ബട്ടൺ ക്ലിക്ക് ചെയ്ത് ഗ്രൂപ്പിൽ സീരിസിന്റെ പേര് അയച്ചാൽ നിങ്ങൾ ആവശ്യപ്പെട്ട സീരീസ് ലഭിക്കുന്നതാണ്.മുകളിൽ കാണുന്ന ലിങ്ക് ക്ലിക്ക് ചെയ്ത് ബോട്ട് സ്റ്റാർട്ട്‌ ചെയ്താൽ അടുത്ത തവണ ഈ മെസ്സേജ് ബോട്ടിന്റെ pm ൽ ലഭിക്കുന്നതാണ്.</b>", reply_markup=InlineKeyboardMarkup(btn3))
         else:
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢʜᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
 
@@ -1069,8 +1069,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         btn = [[
                 InlineKeyboardButton("🟢 Aʟʀᴇᴀᴅʏ Aᴠᴀɪʟᴀʙʟᴇ 🟢", callback_data=f"alalert#{from_user}")
               ]]
-        btn2 = [[
-                 InlineKeyboardButton("Vɪᴇᴡ Sᴛᴀᴛᴜs", url=f"{query.message.link}")
+        btn3 = [[
+                 InlineKeyboardButton("Sᴇʀɪᴇꜱ Gʀᴏᴜᴩ", url="https://t.me/COLD_X_SERIES")
                ]]
         if query.from_user.id in ADMINS:
             user = await client.get_users(from_user)
@@ -1080,9 +1080,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Aʟʀᴇᴀᴅʏ Aᴠᴀɪʟᴀʙʟᴇ !")
             try:
-                await client.send_message(chat_id=int(from_user), text=f"<b>Hᴇʏ {user.mention}, Yᴏᴜʀ ʀᴇᴏ̨ᴜᴇsᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴀᴠᴀɪʟᴀʙʟᴇ ᴏɴ ᴏᴜʀ ʙᴏᴛ's ᴅᴀᴛᴀʙᴀsᴇ. Kɪɴᴅʟʏ sᴇᴀʀᴄʜ ᴀɢᴀɪɴ.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Your Requested Series Already Available on Our Group.Click Below Button And Send This Series Name In Our Group You Will Get Your Series.\n\n താങ്കൾ ആവശ്യപ്പെട്ട സീരീസ് ഞങ്ങളുടെ ഗ്രൂപ്പിൽ ഉണ്ട്. താഴെക്കാണുന്ന ബട്ടൺ ക്ലിക്ക് ചെയ്ത് ഗ്രൂപ്പിൽ സീരിസിന്റെ പേര് അയച്ചാൽ താങ്കൾ ആവശ്യപ്പെട്ട സീരീസ് ലഭിക്കുന്നതാണ്.</b>", reply_markup=InlineKeyboardMarkup(btn3))
             except UserIsBlocked:
-                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hᴇʏ {user.mention}, Yᴏᴜʀ ʀᴇᴏ̨ᴜᴇsᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴀᴠᴀɪʟᴀʙʟᴇ ᴏɴ ᴏᴜʀ ʙᴏᴛ's ᴅᴀᴛᴀʙᴀsᴇ. Kɪɴᴅʟʏ sᴇᴀʀᴄʜ ᴀɢᴀɪɴ.\n\nNᴏᴛᴇ: Tʜɪs ᴍᴇssᴀɢᴇ ɪs sᴇɴᴛ ᴛᴏ ᴛʜɪs ɢʀᴏᴜᴘ ʙᴇᴄᴀᴜsᴇ ʏᴏᴜ'ᴠᴇ ʙʟᴏᴄᴋᴇᴅ ᴛʜᴇ ʙᴏᴛ. Tᴏ sᴇɴᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴛᴏ ʏᴏᴜʀ PM, Mᴜsᴛ ᴜɴʙʟᴏᴄᴋ ᴛʜᴇ ʙᴏᴛ.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Your Requested Series Already Available on Our Group.Click Below Button And Send This Series Name In Our Group You Will Get Your Series.\nClick This Link Next Time You Will Get This Messege In Bot Dm.\nhttps://t.me/Cx_Series_BoT?start\n താങ്കൾ ആവശ്യപ്പെട്ട സീരീസ് ഞങ്ങളുടെ ഗ്രൂപ്പിൽ ഉണ്ട്. താഴെക്കാണുന്ന ബട്ടൺ ക്ലിക്ക് ചെയ്ത് ഗ്രൂപ്പിൽ സീരിസിന്റെ പേര് അയച്ചാൽ താങ്കൾ ആവശ്യപ്പെട്ട സീരീസ് ലഭിക്കുന്നതാണ്.മുകളിൽ കാണുന്ന ലിങ്ക് ക്ലിക്ക് ചെയ്ത് ബോട്ട് സ്റ്റാർട്ട്‌ ചെയ്താൽ അടുത്ത തവണ ഈ മെസ്സേജ് ബോട്ടിന്റെ pm ൽ ലഭിക്കുന്നതാണ്.</b>", reply_markup=InlineKeyboardMarkup(btn3))
         else:
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢʜᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
 

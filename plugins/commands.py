@@ -5,10 +5,10 @@ import asyncio
 from Script import script
 from pyrogram import Client, filters, enums
 from pyrogram.errors import ChatAdminRequired, FloodWait
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id, get_bad_files
 from database.users_chats_db import db
-from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, REQST_CHANNEL, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, SUPPORT_CHAT_ID, MAX_B_TN, IS_VERIFY, HOW_TO_VERIFY
+from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, AUTO_DELETE_TIME, AUTO_DELETE, REQST_CHANNEL, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, SUPPORT_CHAT_ID, MAX_B_TN, IS_VERIFY, HOW_TO_VERIFY
 from utils import get_settings, get_size, is_subscribed, save_group_settings, temp, verify_user, check_token, check_verification, get_token, send_all
 from database.connections_mdb import active_connection
 from plugins.fsub import ForceSub
@@ -18,6 +18,10 @@ import base64
 logger = logging.getLogger(__name__)
 
 BATCH_FILES = {}
+
+async def delete_after_delay(message: Message, delay):
+    await asyncio.sleep(AUTO_DELETE_TIME)
+    await message.delete()
 
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
@@ -137,21 +141,16 @@ async def start(client, message):
             if f_caption is None:
                 f_caption = f"{title}"
             try:
-                await client.send_cached_media(
+                v = await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Files Will Be Deleted in <b>10 Minutes</b> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please Forward This Files To Your Saved Messages And Start Download There\n\nഈ ഫയൽസ് എല്ലാം <b>10 മിനിറ്റിനുള്ളിൽ</b> ഇവിടെ നിന്ന് ഡിലീറ്റ് ആകുന്നതാണ്.\nനിങ്ങൾക്കാവശ്യമുള്ള ഫയൽ സേവ്ഡ് മെസ്സേജിലേക്കോ അല്ലെങ്കിൽ മറ്റൊരു ചാറ്റിലേക്കോ ഫോർവേഡ് ചെയ്ത ശേഷം മാത്രം ഡൗൺലോഡ് ചെയ്യുക.</b>")
+                m = await client.send_cached_media(
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
                     caption=f_caption,
                     protect_content=msg.get('protect', False),
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                         [
-                          InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=f'https://t.me/TEAM_COLD')
-                       ],[
-                          InlineKeyboardButton("Bᴏᴛ Oᴡɴᴇʀ", url="https://t.me/TEAM_COLD_BOT")
-                         ]
-                        ]
-                    )
                 )
+
+                asyncio.create_task(delete_after_delay(v, AUTO_DELETE_TIME))
+                asyncio.create_task(delete_after_delay(m, AUTO_DELETE_TIME))
             except FloodWait as e:
                 await asyncio.sleep(e.x)
                 logger.warning(f"Floodwait of {e.x} sec.")
@@ -160,26 +159,20 @@ async def start(client, message):
                     file_id=msg.get("file_id"),
                     caption=f_caption,
                     protect_content=msg.get('protect', False),
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                         [
-                          InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=f'https://t.me/TEAM_COLD')
-                       ],[
-                          InlineKeyboardButton("Bᴏᴛ Oᴡɴᴇʀ", url="https://t.me/TEAM_COLD_BOT")
-                         ]
-                        ]
                     )
-                )
             except Exception as e:
                 logger.warning(e, exc_info=True)
                 continue
             await asyncio.sleep(1) 
         await sts.delete()
+        
         return
     elif data.split("-", 1)[0] == "DSTORE":
-        sts = await message.reply("<b>Pʟᴇᴀsᴇ ᴡᴀɪᴛ...</b>")
+        sts = await message.reply("**Please.. Wait😌**")
         b_string = data.split("-", 1)[1]
         decoded = (base64.urlsafe_b64decode(b_string + "=" * (-len(b_string) % 4))).decode("ascii")
+        v = await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Files Will Be Deleted in <b>10 Minutes</b> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please Forward This Files To Your Saved Messages And Start Download There\n\nഈ ഫയൽസ് എല്ലാം <b>10 മിനിറ്റിനുള്ളിൽ</b> ഇവിടെ നിന്ന് ഡിലീറ്റ് ആകുന്നതാണ്.\nനിങ്ങൾക്കാവശ്യമുള്ള ഫയൽ സേവ്ഡ് മെസ്സേജിലേക്കോ അല്ലെങ്കിൽ മറ്റൊരു ചാറ്റിലേക്കോ ഫോർവേഡ് ചെയ്ത ശേഷം മാത്രം ഡൗൺലോഡ് ചെയ്യുക.</b>")
+               
         try:
             f_msg_id, l_msg_id, f_chat_id, protect = decoded.split("_", 3)
         except:
@@ -196,11 +189,14 @@ async def start(client, message):
                         logger.exception(e)
                         f_caption = getattr(msg, 'caption', '')
                 else:
-                    media = getattr(msg, msg.media.value)
+                    media = getattr(msg, msg.media)
                     file_name = getattr(media, 'file_name', '')
                     f_caption = getattr(msg, 'caption', file_name)
                 try:
-                    await msg.copy(message.chat.id, caption=f_caption, protect_content=True if protect == "/pbatch" else False)
+                    m = await msg.copy(message.chat.id, caption=f_caption, protect_content=True if protect == "/pbatch" else False)
+                    
+                    asyncio.create_task(delete_after_delay(v, AUTO_DELETE_TIME))
+                    asyncio.create_task(delete_after_delay(m, AUTO_DELETE_TIME))
                 except FloodWait as e:
                     await asyncio.sleep(e.x)
                     await msg.copy(message.chat.id, caption=f_caption, protect_content=True if protect == "/pbatch" else False)
@@ -326,7 +322,7 @@ async def start(client, message):
             reply_markup=InlineKeyboardMarkup(btn)
         )
         return
-    await client.send_cached_media(
+    k = await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
         caption=f_caption,
@@ -341,6 +337,8 @@ async def start(client, message):
             ]
         )
     )
+    await asyncio.sleep(120)
+    await k.delete()
                     
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
