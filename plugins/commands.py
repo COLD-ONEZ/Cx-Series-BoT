@@ -8,10 +8,10 @@ from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id, get_bad_files
 from database.users_chats_db import db
-from info import CHANNELS, ADMINS, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, AUTO_DELETE_TIME, AUTO_DELETE, REQST_CHANNEL, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, SUPPORT_CHAT_ID, MAX_B_TN, IS_VERIFY, HOW_TO_VERIFY
+from info import CHANNELS, ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, AUTO_DELETE_TIME, AUTO_DELETE, REQST_CHANNEL, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, SUPPORT_CHAT_ID, MAX_B_TN, IS_VERIFY, HOW_TO_VERIFY
 from utils import get_settings, get_size, is_subscribed, save_group_settings, temp, verify_user, check_token, check_verification, get_token, send_all
 from database.connections_mdb import active_connection
-from plugins.fsub import ForceSub, INVITE_LINK, AUTH_CHANNEL, REQ_CHANNEL, JOIN_REQS_DB
+from plugins.fsub import ForceSub
 import re
 import json
 import base64
@@ -79,11 +79,6 @@ async def start(client, message):
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         if message.command[1] == "subscribe":
             await ForceSub(client, message)
-            try:
-                kk, file_id = message.command[1].split("_", 1)
-                btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"checksub#{kk}#{file_id}")])
-            except (IndexError, ValueError):
-                btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
             return
 
         buttons = [[
@@ -146,7 +141,7 @@ async def start(client, message):
             if f_caption is None:
                 f_caption = f"{title}"
             try:
-                v = await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Movie File/Video will be deleted in <b><u>{AUTO_DELETE} minutes</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward this File/Video to your Saved Messages and Start Download there</b>")
+                v = await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Files Will Be Deleted in <b>10 Minutes</b> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please Forward This Files To Your Saved Messages And Start Download There\n\nഈ ഫയൽസ് എല്ലാം <b>10 മിനിറ്റിനുള്ളിൽ</b> ഇവിടെ നിന്ന് ഡിലീറ്റ് ആകുന്നതാണ്.\nനിങ്ങൾക്കാവശ്യമുള്ള ഫയൽ സേവ്ഡ് മെസ്സേജിലേക്കോ അല്ലെങ്കിൽ മറ്റൊരു ചാറ്റിലേക്കോ ഫോർവേഡ് ചെയ്ത ശേഷം മാത്രം ഡൗൺലോഡ് ചെയ്യുക.</b>")
                 m = await client.send_cached_media(
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
@@ -173,10 +168,10 @@ async def start(client, message):
         
         return
     elif data.split("-", 1)[0] == "DSTORE":
-        sts = await message.reply("**🔺 ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ**")
+        sts = await message.reply("**Please.. Wait😌**")
         b_string = data.split("-", 1)[1]
         decoded = (base64.urlsafe_b64decode(b_string + "=" * (-len(b_string) % 4))).decode("ascii")
-        await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Movie File/Video will be deleted in <b><u>{AUTO_DELETE} mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward this File/Video to your Saved Messages and Start Download there</b>")
+        v = await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Files Will Be Deleted in <b>10 Minutes</b> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please Forward This Files To Your Saved Messages And Start Download There\n\nഈ ഫയൽസ് എല്ലാം <b>10 മിനിറ്റിനുള്ളിൽ</b> ഇവിടെ നിന്ന് ഡിലീറ്റ് ആകുന്നതാണ്.\nനിങ്ങൾക്കാവശ്യമുള്ള ഫയൽ സേവ്ഡ് മെസ്സേജിലേക്കോ അല്ലെങ്കിൽ മറ്റൊരു ചാറ്റിലേക്കോ ഫോർവേഡ് ചെയ്ത ശേഷം മാത്രം ഡൗൺലോഡ് ചെയ്യുക.</b>")
                
         try:
             f_msg_id, l_msg_id, f_chat_id, protect = decoded.split("_", 3)
@@ -200,6 +195,7 @@ async def start(client, message):
                 try:
                     m = await msg.copy(message.chat.id, caption=f_caption, protect_content=True if protect == "/pbatch" else False)
                     
+                    asyncio.create_task(delete_after_delay(v, AUTO_DELETE_TIME))
                     asyncio.create_task(delete_after_delay(m, AUTO_DELETE_TIME))
                 except FloodWait as e:
                     await asyncio.sleep(e.x)
