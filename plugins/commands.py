@@ -76,6 +76,7 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
+        await ForceSub(client, message)
         btn = [
             [
                 InlineKeyboardButton(
