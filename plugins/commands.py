@@ -108,7 +108,6 @@ async def start(client, message):
     btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"{pre}#{file_id}")])
             except (IndexError, ValueError):
                 btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
-
     status = await ForceSub(client, message, file_id=file_id, mode=pre)
     if not status:
         return
