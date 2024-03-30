@@ -105,10 +105,8 @@ async def start(client, message):
 
     kk, file_id = message.command[1].split("_", 1) if "_" in message.command[1] else (False, False)
     pre = ('checksubp' if kk == 'filep' else 'checksub') if kk else False
-    btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"{pre}#{file_id}")])
-            except (IndexError, ValueError):
-                btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
-    status = await ForceSub(client, message, file_id=file_id, mode=pre)
+    status = await ForceSub(client, message)
+    btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"{mode}#{file_id}")])
     if not status:
         return
 
