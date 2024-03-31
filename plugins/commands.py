@@ -103,10 +103,16 @@ async def start(client, message):
         )
         return
 
+    btns = [
+            [
+                InlineKeyboardButton("📢 JOIN CHANNEL 📢", url=invite_link)
+            ]
+          ]
+    reply_markup = InlineKeyboardMarkup(buttons)
     kk, file_id = message.command[1].split("_", 1) if "_" in message.command[1] else (False, False)
     pre = ('checksubp' if kk == 'filep' else 'checksub') if kk else False
     status = await ForceSub(client, message, file_id=file_id, mode=pre)
-    status.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"{pre}#{file_id}")])
+    btns.append([InlineKeyboardButton(" 🔄 TRY AGAIN 🔄 ", callback_data=f"{mode}#{file_id}")])
     if not status:
         return
 
