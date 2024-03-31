@@ -80,8 +80,8 @@ async def start(client, message):
             try:
                 kk, file_id = message.command[1].split("_", 1)
                 pre = 'checksubp' if kk == 'filep' else 'checksub' 
-                await ForceSub(client, message)
-        ForceSub.append(
+                amal = await ForceSub(client, message, file_id=file_id, mode=pre)
+        amal.append(
                 [
                     InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"{pre}#{file_id}")
                 ]
