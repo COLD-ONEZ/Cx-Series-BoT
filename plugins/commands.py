@@ -76,9 +76,16 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
-    if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
-        if message.command[1] == "subscribe":
-            await ForceSub(client, message)
+    if message.command[1] != "subscribe":
+            try:
+                kk, file_id = message.command[1].split("_", 1)
+                pre = 'checksubp' if kk == 'filep' else 'checksub' 
+                await ForceSub(client, message)
+        ForceSub.append(
+                [
+                    InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"{pre}#{file_id}")
+                ]
+            )
             return
 
         buttons = [[
