@@ -76,16 +76,9 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
-    if message.command[1] != "subscribe":
-            try:
-                kk, file_id = message.command[1].split("_", 1)
-                pre = 'checksubp' if kk == 'filep' else 'checksub' 
-                amal = await ForceSub(client, message, file_id=file_id, mode=pre)
-        amal.append(
-                [
-                    InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"{pre}#{file_id}")
-                ]
-            )
+    if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
+        if message.command[1] == "subscribe":
+            await ForceSub(client, message)
             return
 
         buttons = [[
@@ -109,12 +102,18 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
+
+    kk, file_id = message.command[1].split("_", 1) if "_" in message.command[1] else (False, False)
+    pre = ('checksubp' if kk == 'filep' else 'checksub') if kk else False
+
+    status = await ForceSub(client, message, file_id=file_id, mode=pre)
+    if not status:
+        return
+
     data = message.command[1]
-    try:
-        pre, file_id = data.split('_', 1)
-    except:
+    if not file_id:
         file_id = data
-        pre = ""
+
     if data.split("-", 1)[0] == "BATCH":
         sts = await message.reply("<b>Pʟᴇᴀsᴇ ᴡᴀɪᴛ...</b>")
         file_id = data.split("-", 1)[1]
