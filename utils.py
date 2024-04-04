@@ -84,7 +84,7 @@ async def is_subscribed(bot, query):
 async def check_loop_sub(client, message):
     count = 0
     while True:
-        if count == 15:
+        if count == 40:
             return False
         check = await is_subscribed(client, message)
         count += 1
