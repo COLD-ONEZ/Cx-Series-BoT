@@ -60,6 +60,9 @@ NO_RESULTS_MSG = is_enabled((environ.get("NO_RESULTS_MSG", 'True')), True)
 AUTO_DELETE = int(environ.get('AUTO_DELETE', "10")) # Time in Minutes
 AUTO_DELETE_TIME = int(environ.get('AUTO_DELETE_TIME', "600")) # Time in Seconds
 
+#COLD REQEST_LINK
+COLDREQLINK = environ.get('COLDREQLINK', "")
+
 # This is required for the plugins involving the file system.
 TMP_DOWNLOAD_DIRECTORY = environ.get("TMP_DOWNLOAD_DIRECTORY", "./DOWNLOADS/")
 
