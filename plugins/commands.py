@@ -83,7 +83,7 @@ async def start(client, message):
             return
         btn = [
             [
-                InlineKeyboardButton('CHANNEL 01', url=f'https://t.me/+0GrXO7mzZf9jNTY1'),
+                InlineKeyboardButton('CHANNEL 01', url=COLDREQLINK),
                 InlineKeyboardButton("CHANNEL 02", url=invite_link.invite_link)
             ]
         ]
