@@ -141,14 +141,12 @@ async def start(client, message):
             if f_caption is None:
                 f_caption = f"{title}"
             try:
-                v = await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Files Will Be Deleted in <b>10 Minutes</b> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please Forward This Files To Your Saved Messages And Start Download There\n\nഈ ഫയൽസ് എല്ലാം <b>10 മിനിറ്റിനുള്ളിൽ</b> ഇവിടെ നിന്ന് ഡിലീറ്റ് ആകുന്നതാണ്.\nനിങ്ങൾക്കാവശ്യമുള്ള ഫയൽ സേവ്ഡ് മെസ്സേജിലേക്കോ അല്ലെങ്കിൽ മറ്റൊരു ചാറ്റിലേക്കോ ഫോർവേഡ് ചെയ്ത ശേഷം മാത്രം ഡൗൺലോഡ് ചെയ്യുക.</b>")
                 m = await client.send_cached_media(
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
                     caption=f_caption,
                     protect_content=msg.get('protect', False),
                 )
-
                 asyncio.create_task(delete_after_delay(v, AUTO_DELETE_TIME))
                 asyncio.create_task(delete_after_delay(m, AUTO_DELETE_TIME))
             except FloodWait as e:
@@ -165,7 +163,7 @@ async def start(client, message):
                 continue
             await asyncio.sleep(1) 
         await sts.delete()
-        
+        v = await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Files Will Be Deleted in <b>10 Minutes</b> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please Forward This Files To Your Saved Messages And Start Download There\n\nഈ ഫയൽസ് എല്ലാം <b>10 മിനിറ്റിനുള്ളിൽ</b> ഇവിടെ നിന്ന് ഡിലീറ്റ് ആകുന്നതാണ്.\nനിങ്ങൾക്കാവശ്യമുള്ള ഫയൽ സേവ്ഡ് മെസ്സേജിലേക്കോ അല്ലെങ്കിൽ മറ്റൊരു ചാറ്റിലേക്കോ ഫോർവേഡ് ചെയ്ത ശേഷം മാത്രം ഡൗൺലോഡ് ചെയ്യുക.</b>")
         return
     elif data.split("-", 1)[0] == "DSTORE":
         sts = await message.reply("**Please.. Wait😌**")
