@@ -122,8 +122,10 @@ async def ForceSub(bot: Client, update: Message, file_id: str = False, mode="che
             )
             check = await check_loop_sub(bot, update)
             if check:
-                await send_file(bot, update, mode, file_id)
+                bc = await send_file(bot, update, mode, file_id)
                 await sh.delete() 
+                if bc:
+                    return True
             else:
                 return False
         return False
@@ -150,7 +152,7 @@ def set_global_invite(url: str):
 async def send_file(client, query, ident, file_id):
     files_ = await get_file_details(file_id)
     if not files_:
-        return
+        return True
     files = files_[0]
     title = files.file_name
     size = get_size(files.file_size)
