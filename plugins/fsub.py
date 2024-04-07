@@ -8,9 +8,10 @@ from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 
 from database.join_reqs import JoinReqs
-from info import REQ_CHANNEL, AUTH_CHANNEL, JOIN_REQS_DB, ADMINS
-
+from info import REQ_CHANNEL, AUTH_CHANNEL, JOIN_REQS_DB, ADMINS, CUSTOM_FILE_CAPTION
+from utils import check_loop_sub, get_size
 from logging import getLogger
+from database.ia_filterdb import get_file_details
 
 logger = getLogger(__name__)
 INVITE_LINK = None
@@ -113,12 +114,20 @@ async def ForceSub(bot: Client, update: Message, file_id: str = False, mode="che
             buttons.pop()
 
         if not is_cb:
-            await update.reply(
+            sh = await update.reply(
                 text=text,
                 quote=True,
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=enums.ParseMode.MARKDOWN,
             )
+            check = await check_loop_sub(bot, update)
+            if check:
+                bc = await send_file(bot, update, mode, file_id)
+                await sh.delete() 
+                if bc:
+                    return True
+            else:
+                return False
         return False
 
     except FloodWait as e:
@@ -140,3 +149,27 @@ def set_global_invite(url: str):
     global INVITE_LINK
     INVITE_LINK = url
 
+async def send_file(client, query, ident, file_id):
+    files_ = await get_file_details(file_id)
+    if not files_:
+        return True
+    files = files_[0]
+    title = files.file_name
+    size = get_size(files.file_size)
+    f_caption = files.file_name
+    if CUSTOM_FILE_CAPTION:
+        try:
+            f_caption = CUSTOM_FILE_CAPTION.format(file_name='' if title is None else title,
+                                                   file_size='' if size is None else size,
+                                                   file_caption='' if f_caption is None else f_caption)
+        except Exception as e:
+            logger.exception(e)
+            f_caption = f_caption
+    if f_caption is None:
+        f_caption = f"{title}"
+    await client.send_cached_media(
+        chat_id=query.from_user.id,
+        file_id=file_id,
+        caption=f_caption,
+        protect_content=True if ident == 'checksubp' else False
+        )
