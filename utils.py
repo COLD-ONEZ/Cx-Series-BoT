@@ -81,6 +81,19 @@ async def is_subscribed(bot, query):
         else:
             return False
 
+async def check_loop_sub(client, message):
+    count = 0
+    while True:
+        if count == 40:
+            return False
+        check = await is_subscribed(client, message)
+        count += 1
+        if check:
+            return True
+        else:
+            pass
+        await asyncio.sleep(1)
+
 async def get_poster(query, bulk=False, id=False, file=None):
     if not id:
         # https://t.me/GetTGLink/4183
