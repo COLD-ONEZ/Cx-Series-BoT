@@ -147,6 +147,7 @@ async def start(client, message):
                     caption=f_caption,
                     protect_content=msg.get('protect', False),
                 )
+
                 asyncio.create_task(delete_after_delay(m, AUTO_DELETE_TIME))
             except FloodWait as e:
                 await asyncio.sleep(e.x)
@@ -156,7 +157,7 @@ async def start(client, message):
                     file_id=msg.get("file_id"),
                     caption=f_caption,
                     protect_content=msg.get('protect', False),
-                )
+                    )
             except Exception as e:
                 logger.warning(e, exc_info=True)
                 continue
