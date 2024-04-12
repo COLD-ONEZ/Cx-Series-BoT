@@ -27,15 +27,12 @@ async def delete_after_delay(message: Message, delay):
 async def start(client, message):
     if message.chat.type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         buttons = [[
-                    InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+                    InlineKeyboardButton('Mᴀɪɴ Cʜᴀɴɴᴇʟ', url='https://t.me/TEAM_COLD')
                 ],[
                     InlineKeyboardButton('Oᴡɴᴇʀ', callback_data= "owner_info"),
                     InlineKeyboardButton('Sᴜᴩᴩᴏʀᴛ', callback_data='money_bot')
                 ],[
-                    InlineKeyboardButton('Hᴇʟᴘ', callback_data='help'),
-                    InlineKeyboardButton('Aʙᴏᴜᴛ', callback_data='about')
-                ],[
-                    InlineKeyboardButton('💸𝙴𝙰𝚁𝙽 𝙼𝙾𝙽𝙴𝚈 𝙵𝚁𝙾𝙼 𝙱𝙾𝚃💸', callback_data='dash')
+                    InlineKeyboardButton('Search Movies', switch_inline_query_current_chat='')
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
@@ -55,15 +52,12 @@ async def start(client, message):
         await client.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
         buttons = [[
-                    InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+                    InlineKeyboardButton('Mᴀɪɴ Cʜᴀɴɴᴇʟ', url='https://t.me/TEAM_COLD')
                 ],[
                     InlineKeyboardButton('Oᴡɴᴇʀ', callback_data= "owner_info"),
                     InlineKeyboardButton('Sᴜᴩᴩᴏʀᴛ', callback_data='money_bot')
                 ],[
-                    InlineKeyboardButton('Hᴇʟᴘ', callback_data='help'),
-                    InlineKeyboardButton('Aʙᴏᴜᴛ', callback_data='about')
-                ],[
-                    InlineKeyboardButton('💸𝙴𝙰𝚁𝙽 𝙼𝙾𝙽𝙴𝚈 𝙵𝚁𝙾𝙼 𝙱𝙾𝚃💸', callback_data='dash')
+                    InlineKeyboardButton('Search Movies', switch_inline_query_current_chat='')
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         m=await message.reply_sticker("CAACAgUAAxkBAAICRmSq1NCa7IRTH_iz1PyxlTD_CG8aAAIEAAPBJDExieUdbguzyBAeBA") 
@@ -82,17 +76,12 @@ async def start(client, message):
             return
 
         buttons = [[
-                    InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+                    InlineKeyboardButton('Mᴀɪɴ Cʜᴀɴɴᴇʟ', url='https://t.me/TEAM_COLD')
                 ],[
                     InlineKeyboardButton('Oᴡɴᴇʀ', callback_data= "owner_info"),
                     InlineKeyboardButton('Sᴜᴩᴩᴏʀᴛ', callback_data='money_bot')
                 ],[
-                    InlineKeyboardButton('Hᴇʟᴘ', callback_data='help'),
-                    InlineKeyboardButton('Aʙᴏᴜᴛ', callback_data='about')
-                ],[
-                    InlineKeyboardButton('💸𝙴𝙰𝚁𝙽 𝙼𝙾𝙽𝙴𝚈 𝙵𝚁𝙾𝙼 𝙱𝙾𝚃💸', callback_data='dash')
-                ],[
-                    InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
+                    InlineKeyboardButton('Search Movies', switch_inline_query_current_chat='')
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
