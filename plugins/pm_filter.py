@@ -70,7 +70,7 @@ async def pm_text(bot, message):
     user_id = message.from_user.id
     if content.startswith("/") or content.startswith("#"): return  # ignore commands and hashtags
     if user_id in ADMINS: return # ignore admins
-    await message.reply_text("<b>Hᴇʏ Dᴜᴅᴇ🥰,\n\nYᴏᴜ ᴄᴀɴ'ᴛ Gᴇᴛ ꜱᴇʀɪᴇꜱ ʜᴇʀᴇ........\nAꜱᴋ ꜱᴇʀɪᴇꜱ ᴏɴ ᴏᴜʀ ɢʀᴏᴜᴘ\nCʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ Jᴏɪɴ👇</b>",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("JOIN OUR GROUP", url=f"https://t.me/COLD_X_SERIES")]]))
+    await message.reply_text("<b>Hey Dude🥰,\n\nClick Search Movies Button And Type You're Movie Name You Can See Files.\n താഴെക്കാണുന്ന Search Movies ബട്ടൺ ക്ലിക്ക് ചെയ്ത് നിങ്ങൾക് ആവശ്യമുള്ള സിനിമയുടെ പേര് ടൈപ്പ് ചെയ്യുക നിങ്ങൾക് ആ സിനിമയുടെ ഫയൽ കാണാവുന്നതാണ് അതിൽ ക്ലിക്ക് ചെയ്യുക</b>",reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Movies", switch_inline_query_current_chat='')]]))
     await bot.send_message(chat_id=ADMINS,text=f"<b>#PM_MSG\n\nName : {user}\n\nID : {user_id}\n\nMessage : {content}</b>")
     await bot.send_message(
         chat_id=LOG_CHANNEL,
