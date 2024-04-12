@@ -1121,15 +1121,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "start":
         buttons = [[
-                    InlineKeyboardButton('⤬ Aᴅᴅ Mᴇ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴘ ⤬', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
+                    InlineKeyboardButton('Mᴀɪɴ Cʜᴀɴɴᴇʟ', url='https://t.me/TEAM_COLD')
                 ],[
                     InlineKeyboardButton('Oᴡɴᴇʀ', callback_data= "owner_info"),
                     InlineKeyboardButton('Sᴜᴩᴩᴏʀᴛ', callback_data='money_bot')
                 ],[
-                    InlineKeyboardButton('Hᴇʟᴘ', callback_data='help'),
-                    InlineKeyboardButton('Aʙᴏᴜᴛ', callback_data='about')
-                ],[
-                    InlineKeyboardButton('💸𝙴𝙰𝚁𝙽 𝙼𝙾𝙽𝙴𝚈 𝙵𝚁𝙾𝙼 𝙱𝙾𝚃💸', callback_data='dash')
+                    InlineKeyboardButton('Search Movies', switch_inline_query_current_chat='')
                   ]]
         
         reply_markup = InlineKeyboardMarkup(buttons)
