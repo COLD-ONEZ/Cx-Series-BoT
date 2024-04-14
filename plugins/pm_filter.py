@@ -988,9 +988,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Uᴘʟᴏᴀᴅᴇᴅ !")
             try:
-                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Your Requested Series Has been Uploaded.Click Below Button And And Send You're Requested Series Name in Our Group You Will Get You're Series.\n\nതാങ്കൾ അഭ്യർത്ഥിച്ച സീരീസ് ആഡ് ചെയ്തിട്ടുണ്ട്.\nതാഴെക്കാണുന്ന ബട്ടൺ ക്ലിക്ക് ചെയ്ത് ഗ്രൂപ്പിൽ നിങ്ങൾ ആവശ്യപ്പെട്ട സീരിസിന്റെ പേര് അയക്കുക നിങ്ങൾക് സീരീസ് ലഭിക്കുന്നതാണ്.</b>", reply_markup=InlineKeyboardMarkup(btn3))
+                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Your Requested Series {content} Has been Uploaded.Click Below Button And And Send {content} in Our Group You Will Get This Series.\n\nതാങ്കൾ അഭ്യർത്ഥിച്ച {content} സീരീസ് ആഡ് ചെയ്തിട്ടുണ്ട്.\nതാഴെക്കാണുന്ന ബട്ടൺ ക്ലിക്ക് ചെയ്ത് ഗ്രൂപ്പിൽ {content} എന്ന് അയക്കുക നിങ്ങൾക് സീരീസ് ലഭിക്കുന്നതാണ്.</b>", reply_markup=InlineKeyboardMarkup(btn3))
             except UserIsBlocked:
-                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Your Requested Series Has been Uploaded.Click Below Button And And Send You're Requested Series Name in Our Group You Will Get You're Series.\nClick This Link Next Time You Will Get This Messege In Bot Dm.\nhttps://t.me/Cx_Series_BoT?start\nതാങ്കൾ അഭ്യർത്ഥിച്ച സീരീസ് ആഡ് ചെയ്തിട്ടുണ്ട് താഴെക്കാണുന്ന ബട്ടൺ ക്ലിക്ക് ചെയ്ത് ഗ്രൂപ്പിൽ സീരിസിന്റെ പേര് അയച്ചാൽ നിങ്ങൾ ആവശ്യപ്പെട്ട സീരീസ് ലഭിക്കുന്നതാണ്.മുകളിൽ കാണുന്ന ലിങ്ക് ക്ലിക്ക് ചെയ്ത് ബോട്ട് സ്റ്റാർട്ട്‌ ചെയ്താൽ അടുത്ത തവണ ഈ മെസ്സേജ് ബോട്ടിന്റെ pm ൽ ലഭിക്കുന്നതാണ്.</b>", reply_markup=InlineKeyboardMarkup(btn3))
+                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Your Requested Series {content} Has been Uploaded.Click Below Button And And Send You're Requested Series Name in Our Group You Will Get You're Series.\nClick This Link Next Time You Will Get This Messege In Bot Dm.\nhttps://t.me/Cx_Series_BoT?start\nതാങ്കൾ അഭ്യർത്ഥിച്ച {content} സീരീസ് ആഡ് ചെയ്തിട്ടുണ്ട് താഴെക്കാണുന്ന ബട്ടൺ ക്ലിക്ക് ചെയ്ത് ഗ്രൂപ്പിൽ സീരിസിന്റെ പേര് അയച്ചാൽ നിങ്ങൾ ആവശ്യപ്പെട്ട സീരീസ് ലഭിക്കുന്നതാണ്.മുകളിൽ കാണുന്ന ലിങ്ക് ക്ലിക്ക് ചെയ്ത് ബോട്ട് സ്റ്റാർട്ട്‌ ചെയ്താൽ അടുത്ത തവണ ഈ മെസ്സേജ് ബോട്ടിന്റെ pm ൽ ലഭിക്കുന്നതാണ്.</b>", reply_markup=InlineKeyboardMarkup(btn3))
         else:
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢʜᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
 
@@ -1010,9 +1010,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Sᴇᴛ ᴛᴏ Aʟʀᴇᴀᴅʏ Aᴠᴀɪʟᴀʙʟᴇ !")
             try:
-                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Your Requested Series Already Available on Our Group.Click Below Button And Send This Series Name In Our Group You Will Get Your Series.\n\n താങ്കൾ ആവശ്യപ്പെട്ട സീരീസ് ഞങ്ങളുടെ ഗ്രൂപ്പിൽ ഉണ്ട്. താഴെക്കാണുന്ന ബട്ടൺ ക്ലിക്ക് ചെയ്ത് ഗ്രൂപ്പിൽ സീരിസിന്റെ പേര് അയച്ചാൽ താങ്കൾ ആവശ്യപ്പെട്ട സീരീസ് ലഭിക്കുന്നതാണ്.</b>", reply_markup=InlineKeyboardMarkup(btn3))
+                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Your Requested Series {content} Already Available on Our Group.Click Below Button And Send {content} In Our Group You Will Get Your Series.\n\n താങ്കൾ ആവശ്യപ്പെട്ട {content} സീരീസ് ഞങ്ങളുടെ ഗ്രൂപ്പിൽ ഉണ്ട്. താഴെക്കാണുന്ന ബട്ടൺ ക്ലിക്ക് ചെയ്ത് ഗ്രൂപ്പിൽ {content} എന്ന് അയച്ചാൽ സീരീസ് ലഭിക്കുന്നതാണ്.</b>", reply_markup=InlineKeyboardMarkup(btn3))
             except UserIsBlocked:
-                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Your Requested Series Already Available on Our Group.Click Below Button And Send This Series Name In Our Group You Will Get Your Series.\nClick This Link Next Time You Will Get This Messege In Bot Dm.\nhttps://t.me/Cx_Series_BoT?start\n താങ്കൾ ആവശ്യപ്പെട്ട സീരീസ് ഞങ്ങളുടെ ഗ്രൂപ്പിൽ ഉണ്ട്. താഴെക്കാണുന്ന ബട്ടൺ ക്ലിക്ക് ചെയ്ത് ഗ്രൂപ്പിൽ സീരിസിന്റെ പേര് അയച്ചാൽ താങ്കൾ ആവശ്യപ്പെട്ട സീരീസ് ലഭിക്കുന്നതാണ്.മുകളിൽ കാണുന്ന ലിങ്ക് ക്ലിക്ക് ചെയ്ത് ബോട്ട് സ്റ്റാർട്ട്‌ ചെയ്താൽ അടുത്ത തവണ ഈ മെസ്സേജ് ബോട്ടിന്റെ pm ൽ ലഭിക്കുന്നതാണ്.</b>", reply_markup=InlineKeyboardMarkup(btn3))
+                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Your Requested Series {content} Already Available on Our Group.Click Below Button And Send {content} In Our Group You Will Get Your Series.\nClick This Link Next Time You Will Get This Messege In Bot Dm.\nhttps://t.me/Cx_Series_BoT?start\n താങ്കൾ ആവശ്യപ്പെട്ട സീരീസ് ഞങ്ങളുടെ ഗ്രൂപ്പിൽ ഉണ്ട്. താഴെക്കാണുന്ന ബട്ടൺ ക്ലിക്ക് ചെയ്ത് ഗ്രൂപ്പിൽ സീരിസിന്റെ പേര് അയച്ചാൽ താങ്കൾ ആവശ്യപ്പെട്ട സീരീസ് ലഭിക്കുന്നതാണ്.മുകളിൽ കാണുന്ന ലിങ്ക് ക്ലിക്ക് ചെയ്ത് ബോട്ട് സ്റ്റാർട്ട്‌ ചെയ്താൽ അടുത്ത തവണ ഈ മെസ്സേജ് ബോട്ടിന്റെ pm ൽ ലഭിക്കുന്നതാണ്.</b>", reply_markup=InlineKeyboardMarkup(btn3))
         else:
             await query.answer("Yᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ sᴜғғɪᴄɪᴀɴᴛ ʀɪɢʜᴛs ᴛᴏ ᴅᴏ ᴛʜɪs !", show_alert=True)
 
@@ -1116,9 +1116,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "money_bot":
         buttons = [[
-            InlineKeyboardButton('Mᴏᴠɪᴇ Rᴇqᴜᴇꜱᴛ', url='https://t.me/COLD_X_MOVIES'),
-            InlineKeyboardButton('Sᴇʀɪᴇꜱ Rᴇqᴜᴇꜱᴛ', url='https://t.me/COLD_X_SERIES')
-        ],[
+            InlineKeyboardButton('Rᴇqᴜᴇꜱᴛ Sᴇʀɪᴇꜱ', url='https://t.me/+4gBxjInbBrc2MTU9'),
             InlineKeyboardButton('Cᴏɴᴛᴀᴄᴛ Aᴅᴍɪɴ', url='https://t.me/TEAM_COLD_BOT')
         ],[
             InlineKeyboardButton('⇍ ʙᴀᴄᴋ', callback_data='start'),
