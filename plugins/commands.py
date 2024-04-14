@@ -35,7 +35,7 @@ async def start(client, message):
                     InlineKeyboardButton('Hᴇʟᴘ', callback_data='help'),
                     InlineKeyboardButton('Aʙᴏᴜᴛ', callback_data='about')
                 ],[
-                    InlineKeyboardButton('💸𝙴𝙰𝚁𝙽 𝙼𝙾𝙽𝙴𝚈 𝙵𝚁𝙾𝙼 𝙱𝙾𝚃💸', callback_data='dash')
+                    InlineKeyboardButton('🦋 𝙼𝙰𝙸𝙽 𝙲𝙷𝙰𝙽𝙽𝙴𝙻 🦋', url="https://t.me/TEAM_COLD")
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
@@ -63,7 +63,7 @@ async def start(client, message):
                     InlineKeyboardButton('Hᴇʟᴘ', callback_data='help'),
                     InlineKeyboardButton('Aʙᴏᴜᴛ', callback_data='about')
                 ],[
-                    InlineKeyboardButton('💸𝙴𝙰𝚁𝙽 𝙼𝙾𝙽𝙴𝚈 𝙵𝚁𝙾𝙼 𝙱𝙾𝚃💸', callback_data='dash')
+                    InlineKeyboardButton('🦋 𝙼𝙰𝙸𝙽 𝙲𝙷𝙰𝙽𝙽𝙴𝙻 🦋', url="https://t.me/TEAM_COLD")
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         m=await message.reply_sticker("CAACAgUAAxkBAAICRmSq1NCa7IRTH_iz1PyxlTD_CG8aAAIEAAPBJDExieUdbguzyBAeBA") 
@@ -90,9 +90,7 @@ async def start(client, message):
                     InlineKeyboardButton('Hᴇʟᴘ', callback_data='help'),
                     InlineKeyboardButton('Aʙᴏᴜᴛ', callback_data='about')
                 ],[
-                    InlineKeyboardButton('💸𝙴𝙰𝚁𝙽 𝙼𝙾𝙽𝙴𝚈 𝙵𝚁𝙾𝙼 𝙱𝙾𝚃💸', callback_data='dash')
-                ],[
-                    InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
+                    InlineKeyboardButton('🦋 𝙼𝙰𝙸𝙽 𝙲𝙷𝙰𝙽𝙽𝙴𝙻 🦋', url="https://t.me/TEAM_COLD")
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_photo(
@@ -163,6 +161,7 @@ async def start(client, message):
                 continue
             await asyncio.sleep(1) 
         await sts.delete()
+        await message.delete()
         v = await message.reply_text(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Files Will Be Deleted in <b>10 Minutes</b> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please Forward This Files To Your Saved Messages And Start Download There\n\nഈ ഫയൽസ് എല്ലാം <b>10 മിനിറ്റിനുള്ളിൽ</b> ഇവിടെ നിന്ന് ഡിലീറ്റ് ആകുന്നതാണ്.\nനിങ്ങൾക്കാവശ്യമുള്ള ഫയൽ സേവ്ഡ് മെസ്സേജിലേക്കോ അല്ലെങ്കിൽ മറ്റൊരു ചാറ്റിലേക്കോ ഫോർവേഡ് ചെയ്ത ശേഷം മാത്രം ഡൗൺലോഡ് ചെയ്യുക.</b>")
         asyncio.create_task(delete_after_delay(v, AUTO_DELETE_TIME))
         return
