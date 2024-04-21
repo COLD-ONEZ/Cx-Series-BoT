@@ -20,7 +20,7 @@ async def allowed(_, __, message):
         return True
     return False
 
-@Client.on_message(filters.command(['link', 'plink']) & filters.create(allowed))
+@Client.on_message(filters.command(['link', 'plink']) & filters.create & filters.user(ADMINS))
 async def gen_link_s(bot, message):
     replied = message.reply_to_message
     if not replied:
