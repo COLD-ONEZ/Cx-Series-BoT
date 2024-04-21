@@ -470,7 +470,7 @@ async def settings(client, message):
                 chat = await client.get_chat(grpid)
                 title = chat.title
             except:
-                await message.reply_text("You Can't Do This Broh !", quote=True)
+                await message.reply_text("Connect With Your Group", quote=True)
                 return
         else:
             await message.reply_text("I'ᴍ ɴᴏᴛ ᴄᴏɴɴᴇᴄᴛᴇᴅ ᴛᴏ ᴀɴʏ ɢʀᴏᴜᴘs !", quote=True)
@@ -485,8 +485,10 @@ async def settings(client, message):
 
     st = await client.get_chat_member(grp_id, userid)
     if (
-            str(userid) not in ADMINS
-    ):
+                st.status != enums.ChatMemberStatus.ADMINISTRATOR
+                and st.status != enums.ChatMemberStatus.OWNER
+                and str(userid) not in ADMINS
+        ):
         return
     
     settings = await get_settings(grp_id)
