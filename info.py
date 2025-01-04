@@ -13,9 +13,9 @@ def is_enabled(value, default):
 
 # Bot information
 SESSION = environ.get('SESSION', 'Media_search')
-API_ID = int(environ['API_ID'])
-API_HASH = environ['API_HASH']
-BOT_TOKEN = environ['BOT_TOKEN']
+API_ID = '20400973' #bots
+API_HASH = '047838cb76d54bc445e155a7cab44664'
+BOT_TOKEN = '7883244141:AAEtIDi-eprbCEMJ6p0qUHtP1H_rIdhLRoo'
 
 # Bot settings
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
@@ -32,13 +32,13 @@ CLOSE_IMG = (environ.get('CLOSE_IMG', 'https://telegra.ph/file/6e9dd701bac49632c
 BOT_START_TIME = 'time'
 
 # MongoDB information
-DATABASE_URI = environ.get('DATABASE_URI', "")
-DATABASE_NAME = environ.get('DATABASE_NAME', "Rajappan")
+DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://amalabraham898:amal2002@cold-x-botx.uhb6b.mongodb.net/?retryWrites=true&w=majority&appName=cold-x-botx")
+DATABASE_NAME = environ.get('DATABASE_NAME', "cold-x-botx")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
 # Admins, Channels & Users
-ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '').split()]
-CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '0').split()]
+ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '5677517133 5329179170 5503730873').split()]
+CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1001767342018 -1002360635700').split()]
 auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '').split()]
 AUTH_USERS = (auth_users + ADMINS) if auth_users else []
 auth_channel = environ.get('AUTH_CHANNEL')
@@ -51,17 +51,14 @@ REQST_CHANNEL = int(reqst_channel) if reqst_channel and id_pattern.search(reqst_
 SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
 
 # Request To Join
-REQ_CHANNEL = environ.get('REQ_CHANNEL', "")
+REQ_CHANNEL = environ.get('REQ_CHANNEL', "-1002437096362")
 REQ_CHANNEL = int(REQ_CHANNEL) if REQ_CHANNEL and id_pattern.search(REQ_CHANNEL) else False
 JOIN_REQS_DB = environ.get('DATABASE_URI')
-NO_RESULTS_MSG = is_enabled((environ.get("NO_RESULTS_MSG", 'True')), True)
+NO_RESULTS_MSG = is_enabled((environ.get("NO_RESULTS_MSG", 'False')), False)
 
 # Auto Delete Information
 AUTO_DELETE = int(environ.get('AUTO_DELETE', "10")) # Time in Minutes
 AUTO_DELETE_TIME = int(environ.get('AUTO_DELETE_TIME', "600")) # Time in Seconds
-
-#COLD REQEST_LINK
-COLDREQLINK = environ.get('COLDREQLINK', "")
 
 # This is required for the plugins involving the file system.
 TMP_DOWNLOAD_DIRECTORY = environ.get("TMP_DOWNLOAD_DIRECTORY", "./DOWNLOADS/")
@@ -99,7 +96,7 @@ S_GROUP = environ.get('S_GROUP',"https://t.me/TEAM_COLD_BOT")
 P_TTI_SHOW_OFF = is_enabled((environ.get('P_TTI_SHOW_OFF', "False")), False)
 IMDB = is_enabled((environ.get('IMDB', "False")), False)
 AUTO_FFILTER = is_enabled((environ.get('AUTO_FFILTER', "True")), True)
-AUTO_DELETE = is_enabled((environ.get('AUTO_DELETE', "True")), True)
+AUTO_DELETE = is_enabled((environ.get('AUTO_DELETE', "Falsw")), False)
 SINGLE_BUTTON = is_enabled((environ.get('SINGLE_BUTTON', "True")), True)
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", f"{script.CAPTION}")
 BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)
