@@ -9,7 +9,7 @@ bs4
 git+https://github.com/Joelkb/cinemagoer
 datetime
 pytz
-aiohttp
+aiohttp==3.11.11
 openai
 psutil
 PyPDF2
