@@ -96,5 +96,3 @@ try:
     app.run()
 except Exception as e:
     logging.error(e)
-finally:
-    # Add a finally block to ensure
